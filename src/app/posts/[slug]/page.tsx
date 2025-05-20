@@ -1,16 +1,14 @@
 import { getPostBySlug, getPostSlugs } from "@/lib/posts";
 import { notFound } from "next/navigation";
-import ReactMarkdown from "react-markdown";
-import rehypeSanitize from "rehype-sanitize";
 import { MDXRemote } from "next-mdx-remote/rsc";
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 export async function generateStaticParams() {
   const slugs = getPostSlugs().map((slug) => ({
-    slug: slug.replace(".md", ""),
+    slug: slug.replace(/\.mdx?$/, ""),
   }));
   return slugs;
 }
