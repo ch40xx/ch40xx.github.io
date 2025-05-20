@@ -5,24 +5,43 @@ import matter from 'gray-matter';
 const postsDirectory = path.join(process.cwd(), 'content/posts');
 
 export function getPostSlugs() {
-  return fs.readdirSync(postsDirectory).filter(f => f.endsWith('.md'));
-}
-
-export function getPostBySlug(slug: string) {
-  const realSlug = slug.replace(/\.md$/, '');
-  const fullPath = path.join(postsDirectory, `${realSlug}.md`);
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
-  const { data, content } = matter(fileContents);
-
-  return {
-    slug: realSlug,
-    meta: data,
-    content,
-  };
+  return fs.readdirSync(postsDirectory).filter((file) => file.endsWith('.mdx') || file.endsWith('.md'));
 }
 
 export function getAllPosts() {
   const slugs = getPostSlugs();
-  return slugs.map((slug) => getPostBySlug(slug));
+  return slugs.map((slug) => {
+    const filePath = path.join(postsDirectory, slug);
+    const fileContent = fs.readFileSync(filePath, 'utf8');
+    const { data } = matter(fileContent);
+
+    return {
+      slug: slug.replace(/\.mdx?$/, ''),
+      meta: data,
+    };
+  });
 }
 
+function getFilePath(slug: string) {
+  const mdxPath = path.join(postsDirectory, `${slug}.mdx`)
+  const mdPath = path.join(postsDirectory, `${slug}.md`)
+
+  if (fs.existsSync(mdxPath)) {
+    return mdxPath
+  } else if (fs.existsSync(mdPath)) {
+    return mdPath
+  } else {
+    throw new Error(`Post not found for slug: ${slug}`)
+  }
+}
+
+export function getPostBySlug(slug: string) {
+  const filePath = getFilePath(slug);
+  const fileContent = fs.readFileSync(filePath, 'utf-8');
+  const { content, data } = matter(fileContent);
+
+  return {
+    meta: data,
+    content,
+  };
+}
