@@ -2,8 +2,9 @@ import { getPostBySlug, getPostSlugs } from "@/lib/posts";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import rehypeSanitize from "rehype-sanitize";
+
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 export async function generateStaticParams() {
