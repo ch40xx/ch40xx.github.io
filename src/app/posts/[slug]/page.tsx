@@ -2,6 +2,8 @@ import { getPostBySlug, getPostSlugs } from "@/lib/posts";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import rehypeSanitize from "rehype-sanitize";
+import { MDXRemote } from "next-mdx-remote/rsc";
+
 type Props = {
   params: { slug: string };
 };
@@ -31,9 +33,10 @@ export default async function PostPage({ params }: Props) {
         <article className="col-span-3 border min-h-screen border-gray-300 rounded-lg p-6 bg-white dark:bg-zinc-900 shadow-sm prose dark:prose-invert max-w-none">
           <h1 className="text-3xl font-bold mb-4">{post.meta.title}</h1>
           <p className="text-sm text-gray-500 mb-6">{post.meta.date}</p>
-          <ReactMarkdown rehypePlugins={[rehypeSanitize]}>
-            {post.content}
-          </ReactMarkdown>
+          <blockquote className="border-l-4 border-gray-300 pl-4 italic mb-6">
+            {post.meta.quote}
+          </blockquote>
+          <MDXRemote source={post.content} />
         </article>
 
         {/* Right column: 20% */}
