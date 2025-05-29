@@ -1,5 +1,5 @@
 import { Book, FlaskConical, ZoomIn } from "lucide-react";
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarTrigger } from "./ui/sidebar";
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem} from "./ui/sidebar";
 import { SidebarProvider } from "./ui/sidebar";
 
 const pages = [

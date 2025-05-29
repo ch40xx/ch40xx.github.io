@@ -1,7 +1,6 @@
 import { getPostBySlug, getPostSlugs } from "@/lib/posts";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { Sidebar, SidebarProvider } from "@/components/ui/sidebar";
 
 type Props = {
   params: Promise<{ slug: string }>;
