@@ -24,7 +24,8 @@ const pages = [
 export default function Navsidebar() {
   return (
     <SidebarProvider>
-      <Sidebar>
+      <Sidebar variant="floating" >
+        
         <SidebarHeader>
         </SidebarHeader>
         <SidebarContent>
