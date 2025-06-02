@@ -10,7 +10,7 @@ export function getPostSlugs() {
 
 export function getAllPosts() {
   const slugs = getPostSlugs();
-  return slugs.map((slug) => {
+  const posts = slugs.map((slug) => {
     const filePath = path.join(postsDirectory, slug);
     const fileContent = fs.readFileSync(filePath, 'utf8');
     const { data } = matter(fileContent);
@@ -18,8 +18,11 @@ export function getAllPosts() {
     return {
       slug: slug.replace(/\.mdx?$/, ''),
       meta: data,
+      date: new Date(data.date)
     };
   });
+
+  return posts.sort((a, b) => b.date.getTime() - a.date.getTime());
 }
 
 function getFilePath(slug: string) {

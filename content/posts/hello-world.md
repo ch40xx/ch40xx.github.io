@@ -8,4 +8,3 @@ quote: "SEEDS ARE SOWN"
 
 Welcome to my first blog post written in **Markdown**!
 
-# DOES THIS WORK ?
