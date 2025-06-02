@@ -1,5 +1,13 @@
 import { Book, FlaskConical, ZoomIn } from "lucide-react";
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem} from "./ui/sidebar";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from "./ui/sidebar";
 import { SidebarProvider } from "./ui/sidebar";
 
 const pages = [
@@ -15,23 +23,20 @@ const pages = [
   },
   {
     title: "Projects",
-    url: "/projects",
+    url: "/",
     icon: FlaskConical,
   },
-
-]
+];
 
 export default function Navsidebar() {
   return (
     <SidebarProvider>
-      <Sidebar variant="floating" >
-        
-        <SidebarHeader>
-        </SidebarHeader>
+      <Sidebar variant="floating" className="w-[225px]">
+        <SidebarHeader></SidebarHeader>
         <SidebarContent>
           <SidebarMenu>
             {pages.map((page) => (
-              <SidebarMenuItem key={page.title}>
+              <SidebarMenuItem key={page.title} className="p-1">
                 <SidebarMenuButton asChild>
                   <a href={page.url}>
                     <page.icon />
@@ -41,11 +46,9 @@ export default function Navsidebar() {
               </SidebarMenuItem>
             ))}
           </SidebarMenu>
-
         </SidebarContent>
-        <SidebarFooter>
-        </SidebarFooter>
+        <SidebarFooter></SidebarFooter>
       </Sidebar>
     </SidebarProvider>
-  )
+  );
 }
