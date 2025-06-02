@@ -1,4 +1,5 @@
-import { Book, FlaskConical, ZoomIn } from "lucide-react";
+import { Book, FlaskConical, Github, ZoomIn } from "lucide-react";
+import { SiLeetcode } from "react-icons/si";
 import {
   Sidebar,
   SidebarContent,
@@ -17,14 +18,27 @@ const pages = [
     icon: Book,
   },
   {
+    title: "Projects",
+    url: "/",
+    icon: FlaskConical,
+  },
+  {
     title: "About",
     url: "/about",
     icon: ZoomIn,
   },
+];
+
+const foots = [
   {
-    title: "Projects",
-    url: "/",
-    icon: FlaskConical,
+    name: "Github",
+    url: "www.github.com/ch40xx",
+    icon: Github,
+  },
+  {
+    name: "Leetcode",
+    url: "https://leetcode.com/u/ch40x/",
+    icon: SiLeetcode,
   },
 ];
 
@@ -47,7 +61,19 @@ export default function Navsidebar() {
             ))}
           </SidebarMenu>
         </SidebarContent>
-        <SidebarFooter></SidebarFooter>
+        <SidebarFooter>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              {foots.map((foot) => (
+                <SidebarMenuButton asChild key={foot.name}>
+                  <a href={foot.url}>
+                    <foot.icon /> <span>{foot.name}</span>
+                  </a>
+                </SidebarMenuButton>
+              ))}
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarFooter>
       </Sidebar>
     </SidebarProvider>
   );
