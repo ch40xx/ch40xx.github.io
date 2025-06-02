@@ -13,7 +13,7 @@ export default function AboutPage() {
 
       <ListofThings />
       <div className="pt-5 text-center ">
-        If you'd like to connect, you can{" "}
+        {`If you'd like to connect, you can`}{" "}
         <a href="mailto:contact.chaos@proton.me" className="font-semibold">
           email
         </a>{" "}
