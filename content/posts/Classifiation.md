@@ -1,0 +1,141 @@
+---
+title: Classification
+date: 2026-01-08 
+slug: classify
+desc: The notes i made during my machine learning crash course.
+quote: CRASHING THE LEARNING MACHINE.
+---
+
+
+# Classificaiton
+
+The task of predicting which of a set of classes and example belongs to.
+There are two kinds of classification i know till now 
+1. binary classification
+2. multi-class classification
+
+Before that lets talk about thresholds and the confusion matrix.
+
+## Thresholds
+
+Using a logistic regression model we can get a value like some amount of percentage that tells us how likely the probabltiy of the example being right or wrong is. 
+But in classifcation we need to take that value and give the end user a readable label. thats where we will need a classifiction threshold. if the threshold is exceceed the example  is flagged positive for the case we are checking else it is negative for the case we are checking.
+
+For example, if we get a email that has a chance of being 0.5 spam what do we do ? we set the classificaton threshold to be 0.75 to flag it postitive [ as a spam]
+or it could be any number but 0.75 just in case here the email would be flagged negative [not spam] and categorizeed in to regular email. The "0.75" is the classifcation threshold.
+
+> [!NOTE]
+> Ifd the cost of one type of wrong classifcation is greather than the other or if the classes are imbalanced.then 50 50 is not going to be a good idea.
+
+## confustion matrix
+
+if the probablity score is not reality than there can be 4 outcome for each output fomr a binary classifier.
+
+True Positive: Actually postive and the model precits positive.
+False Postive: Actually negative but the model predicts positive.
+True Negative: Actually Negative and the model preicts negative.
+False Negative : Actually positive but the model predicts Negative.
+
+the matrix goes like this
+xx | AP | AN
+PP | TP | FP
+PN | FN | TN
+
+the 1st rows give us all the predicted poositives.
+the 2nd rows gives ua ll the predicted negative
+even tho wrong
+
+BUT,
+the 1st column gives us all the real postives.
+the 2nd column gives us all the real negatives.
+
+If the real postives do not come cloase to the total of real negatives then the dataset is __"Imbalanced".__
+
+An example of imbalanced dataset would be a dataset of cloud where the cloud we are interested in only come a few times. {not good number of data to learn from}
+
+The data is in three types : separated: Positive and negative exmaples are generally well differeintiated with most postiive examples having highter scores thatn negative examples.
+
+Unseparated: Many positive examples have lower scores thatn negative examples and many engateive examples have higher scores than postiive 
+.
+
+Imbalanced : Ther are few poistiive examples.
+
+## Classification : Accuracy Recall Precision and Other Metrics:
+
+#### Accuracy : Correct classification / total classifciations
+
+But when data is imbalanced which most of the real data is it is better ot rely on one or more of the otehr metrices as well.
+
+
+#### Recall / TPR : true positive / all actual postives
+
+In an imbalanced addat ase twhere the numebr of actual postives are low recall is more meaningful metric than accuracy because it measure the ablitiy of the model to correctllyu identifyu all positive instances.
+
+#### False Positive rate : false postitive / all actual negative
+
+the probablity of false alarms.
+
+#### Precision: True postive / predicted postives
+
+preciions improse as fp decreases while recall imporves when fn decreases
+
+
+> Precion and recall show an inverse relationship.
+
+
+When to use what metric and its guidances
+
+Accuarcy: Use as a rought indicatior of model training progress/ convergenc e for balanced datasets.
+For model peroformance use only in ocmbination with ohter metrics
+avodid for imabalanced datasets.
+
+Recall(TPR): When false negtives are more expensive than false poositvies.
+
+False PR: wehn false pooistive  are more expensive than false negatives.
+
+ Preciions : use when ites very imporatnt for postive predciton to be accurate.
+
+
+F1 score is the harmonic nmean of precisoin and recall 
+
+mathematically it is given b uye :
+
+f1 = 2 * ( precision * recall / precions + recall) 
+this metric balances the imporatnce of preicion and recall and is prefereable to accuaacy for calass imbalaneced dataset.
+
+
+## ROC 
+
+To evaluate a models quality across all possible thresholds 
+
+rocs is drawn by the true postive rate and the false positvie rate at everry possibel threshold.
+a  perfect model which ast some threshold has a tpr of 1.0 and a fpr of 0.0 can be represented byut either a point at 0,1.
+
+## AUC 
+
+represents the proabbliy that the model  if given a  randomly postive and negative example woill rank the postive higher than the negative.
+
+
+aur is useful measure for comparing the perofrmane of two difreenet models as longs as the datset i rpoughtly balanced.
+The model with greate area under the curve is generally the better one.
+
+Precison recall curves perfom better when the dataset is imbalanced.
+y = precision
+x = recall
+
+## Prediction Bias
+
+Calcualting prediction bias is a quick check that can flag issues with the model or training data early on.
+
+**Difference between the mean of a model's prediciton and the mean of ground-truth labels in the data**.
+can be caused by :
+1. Biases or noise in the data.
+2. too strong regularization, meaning the model was oversimplified and lost some necessary complexity;.
+3. se of features provieded to the model being insufficient for the tastk
+4. bugs in the model training pipeline.
+
+# Multi-class Classification.
+
+A,B,C classifier can work like first classfiy A+B or C and then later A or B.
+
+

@@ -1,0 +1,63 @@
+---
+title: Logistic Regression
+date: 2026-01-08 
+slug: log-reg
+desc: The notes i made during my machine learning crash course.
+quote: CRASHING THE LEARNING MACHINE.
+---
+
+# Logistic Regression
+A new type of regression model that is designed to predict the probability of a given outcome.
+as many problem might require a probablity estimate as a output.
+LR is a very efficient mechanism for calculating probablities.
+
+The probablity it returns can be used in the two ways:
+    1. Applied as is: the model takes the input and ouputs certain probablity as the likelyhood of being something
+    2. Converted into a binary category: 
+
+# AS IS
+
+A logistic regression uses a logistic function to ouput a values between 0 and 1 only.
+The standard logistic function is also know as the sigmoid function[sigmoid means S shaped as it makes a s shape curve when plotted]
+
+**formula** : f(x) = 1 / (1 + e^-x)
+f(x) is the ouput of the sigmoid function.
+e is the Euler's Number: a const: 2.718
+x in the input to the sigmoid function
+
+![Sigmoid Function](https://developers.google.com/static/machine-learning/crash-course/logistic-regression/images/sigmoid_function_with_axes.png "Sigmod fucntion curve")
+
+as the input x decreases the ouput approaches 0 but never reaches 0 and as the input x increases the ouput approaches 1 but never reaches 1.
+
+## Transforming linear output using the sigmoid function:
+z = b + w1.x1 + w2.x2 + ..... + wn.xn 
+
+the z is the ouput of the linear equation aslo called the __log odds.__
+
+this z in then plotted to the as the input for f(x) in the sigmoid fucntion giving us the logistic regression.
+
+## Loss : Logi REG
+
+Logistic regression models are trained using the same process as the linear models but there are two diffrence to it they are the caluclation of the loss function and regularization to prevent overfitting.
+
+### Log Loss
+    We used squared losses previously but they only intend to work properly when used tof a linear model where the rate of hcnage of the output value is constant.
+
+The rate of change in the logisitic regeression model is not constant. 
+The suitable form of calcualting the lossi n logisitic regression models is by log loss.
+
+The log loss is calculated as follows:
+    
+    LL =  sum of {acutal y * log of (predicted y) + (1- acutal y) * log of ( 1 - predicted y)}/ no of examples taken
+
+## Regularization
+
+It is the mechanism for penalizing model complexity during training. as it it extremely importnat in log reg modeling.
+
+The asymptotic nature of log-reg would keep driving loss towards 0 in cases where the model has a large number of features.
+
+There are two methods 
+1.L2 regulariztaion
+2. Early stopping; limitin the number of training steops to halt training whiel loss is still decreasing.
+
+

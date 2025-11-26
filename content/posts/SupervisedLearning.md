@@ -1,0 +1,49 @@
+---
+title: Supervised Learning 
+date: 2026-01-08 
+slug: learn-supervised
+desc: The notes i made during my machine learning crash course.
+quote: CRASHING THE LEARNING MACHINE.
+---
+
+
+# Supervised Learning.
+It is a type of machine learning that helps to predict or classfiy data based by finding out the relationship between the input and the given correct outputs. Then the model is used to test the prediction on another set of inputs and then check how correctly it predicts using a loss function.
+
+Supervised Learning is based on the following core concepts:
+- Data
+- Model
+- Training
+- Evaluation
+- Inference.
+
+## Data: 
+It is the driving force of Machien learning the data comes in the form of words and numbers stored in tables or as the values of pxiels anmd waveforms in images and audio files.
+
+They are stored in a dataset, each data in the dataset contains a feature and a label. __label__ is the thing that we want to predict and features are the values that help contribute to the label prediction.
+
+There are two types one is called a labeled example which contains both features and labels. Another is unlabeled example where the model gets the features but hast ot predict the label from the features.
+
+A good dataset is determined by its size and diversity. Large size and high diversity datasets often produce good results.
+
+## Model:
+
+A complex collection of numbers that define the mathematical relationship from specific input features to specific output labels values.
+
+## Traning:
+
+Before a superviseed model can make predictions, it must be trained. To train a model we give the model a dataset with labeled examples. The goal of the model is to work out the best solution for predicting the labels from the features.
+
+The model predicts and fact checks by comparing the predicted value and the ture actual value the example should have know as the __loss__.
+The model iterates over  this and gradually comes to find out the relationship between the features and the label, this gives us the solution "The mathematical relationship between the fetaures and the label so that it can make the best precictions on unseen data".
+
+## Evalutation:
+
+We evaluate a trained model to see how well it learned.
+By giving it a bunch of features for the label we already know. it tries to perform and predict the label values. We then after the model predicts the values compared the actuals from the predicted and judge how well the model is performing.
+
+This process is called evaluation.
+
+## Inferenece:
+After all this and well when we give the model a good to go status We can use it to make predictions that we can rely on called __inferences__.
+We can give the model our current features and let it predict the label for us.
