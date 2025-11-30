@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+import "katex/dist/katex.min.css";
 
 {/*
 const geistSans = Geist({
@@ -32,8 +33,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${montserrat} antialiased`}>
-        {children} 
+      <body className={`${montserrat.variable} antialiased`}>
+        {children}
       </body>
     </html>
   );

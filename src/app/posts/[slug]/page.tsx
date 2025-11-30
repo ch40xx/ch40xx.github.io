@@ -1,6 +1,8 @@
 import { getPostBySlug, getPostSlugs } from "@/lib/posts";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -17,7 +19,12 @@ export default async function PostPage({ params }: Props) {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
   if (!post) notFound();
-
+  
+  const mdxOptions = {
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [rehypeKatex],
+  };
+  
   return (
     <main className="min-h-screen bg-zinc-100 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 py-2 px-2">
       <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-3">
@@ -37,7 +44,15 @@ export default async function PostPage({ params }: Props) {
             <blockquote className="border-l-4 border-gray-300 pl-4 italic mb-6">
               {post.meta.quote}
             </blockquote>
-            <MDXRemote source={post.content} />
+            <MDXRemote 
+              source={post.content}
+              options={{
+                mdxOptions: {
+                  remarkPlugins: [remarkMath],
+                  rehypePlugins: [rehypeKatex],
+                }
+              }}
+            />
           </article>
         </div>
         {/* Right column: 20% className="col-span-1 bg-gray-50 dark:bg-zinc-900 p-4 rounded-bl-2xl rounded-tl-2xl "*/}
