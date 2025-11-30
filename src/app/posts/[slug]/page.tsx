@@ -19,12 +19,7 @@ export default async function PostPage({ params }: Props) {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
   if (!post) notFound();
-  
-  const mdxOptions = {
-    remarkPlugins: [remarkMath],
-    rehypePlugins: [rehypeKatex],
-  };
-  
+
   return (
     <main className="min-h-screen bg-zinc-100 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 py-2 px-2">
       <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-3">
